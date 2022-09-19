@@ -12,7 +12,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 import py.una.entidad.DatosMeteorologicos;
 import py.una.entidad.DatosMeteorologicosJSON;
 
@@ -40,7 +39,7 @@ public class UDPClient {
         System.out.println("Intentando conectar a = " + IPAddress + ":" + puertoServidor + " via UDP...");
         System.out.println("Ingrese la operacion deseada");
         System.out.println("1 - Cargar datos Meteorológicos");
-        System.out.println("2 - Consultar temperatura por ciudad: ");
+//        System.out.println("2 - Consultar temperatura por ciudad: ");
         String opcion = inFromUser.readLine();
         if (opcion.equals("1")) {
             try {
@@ -130,38 +129,6 @@ public class UDPClient {
                     System.out.println("TimeOut: El paquete udp se asume perdido.");
                 }
                 clientSocket.close();
-
-            } catch (UnknownHostException ex) {
-                System.err.println(ex);
-            } catch (IOException ex) {
-                System.err.println(ex);
-            }
-        } else {
-            try {
-                byte[] sendData = new byte[1024];
-                byte[] receiveData = new byte[1024];
-
-                System.out.print("Ingrese la ciudad: ");
-                String ciudad = inFromUser.readLine();
-
-                DatosMeteorologicos datosMeteorologicos = new DatosMeteorologicos();
-                datosMeteorologicos.setCiudad(ciudad);
-
-                String datoPaquete = DatosMeteorologicosJSON.objetoString(datosMeteorologicos);
-                sendData = datoPaquete.getBytes();
-
-                System.out.println("Enviar " + datoPaquete + " al servidor. (" + sendData.length + " bytes)");
-                DatagramPacket sendPacket
-                        = new DatagramPacket(sendData, sendData.length, IPAddress, puertoServidor);
-
-                clientSocket.send(sendPacket);               
-
-                DatagramPacket receivePacket
-                        = new DatagramPacket(receiveData, receiveData.length);
-
-                System.out.println("Esperamos si viene la respuesta.");
-                //Vamos a hacer una llamada BLOQUEANTE entonces establecemos un timeout maximo de espera
-                clientSocket.setSoTimeout(10000);
 
             } catch (UnknownHostException ex) {
                 System.err.println(ex);
