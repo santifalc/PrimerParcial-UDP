@@ -26,6 +26,7 @@ public class UDPServer {
         try {
             //1) Creamos el socket Servidor de Datagramas (UDP)
             DatagramSocket serverSocket = new DatagramSocket(puertoServidor);
+            System.out.println("Nombre: Santiago Falcón - Fecha de nacimiento: 14/07/99");
             System.out.println("Servidor Sistemas Distribuidos - UDP ");
 
             //2) buffer de datos a enviar y recibir

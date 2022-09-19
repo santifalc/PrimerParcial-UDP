@@ -36,6 +36,7 @@ public class UDPClient {
         DatagramSocket clientSocket = new DatagramSocket();
 
         InetAddress IPAddress = InetAddress.getByName(direccionServidor);
+        System.out.println("Nombre: Santiago Falcón - Fecha de nacimiento: 14/07/99");
         System.out.println("Intentando conectar a = " + IPAddress + ":" + puertoServidor + " via UDP...");
         System.out.println("Ingrese la operacion deseada");
         System.out.println("1 - Cargar datos Meteorológicos");
